@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akram | Master Barista - Doha, Qatar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coffee-dark: #1a1208;
+            --coffee-medium: #3d2b1f;
+            --coffee-light: #6f4e37;
+            --coffee-cream: #d4a574;
+            --coffee-gold: #c9a227;
+            --text-light: #f5f0e8;
+            --text-muted: #b8a99a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--coffee-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* ========== ANIMATED BACKGROUND ========== */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bean {
+            position: absolute;
+            width: 12px;
+            height: 16px;
+            background: var(--coffee-light);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.15;
+            animation: floatBean linear infinite;
+        }
+
+        @keyframes floatBean {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 18, 8, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 60px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--coffee-cream);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--coffee-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--coffee-cream);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 25px;
+            border: 1px solid var(--coffee-light);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--coffee-cream);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--coffee-gold);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--coffee-cream) 50%, var(--coffee-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--coffee-cream);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .hero-location svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--coffee-gold);
+        }
+
+        .hero-counter {
+            margin-top: 40px;
+            display: flex;
+            gap: 60px;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--coffee-gold);
+            line-height: 1;
+        }
+
+        .counter-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--coffee-cream);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        /* ========== SECTION COMMON ========== */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--coffee-gold);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about {
+            background: linear-gradient(180deg, var(--coffee-dark) 0%, var(--coffee-medium) 100%);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--coffee-cream);
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.9;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            padding: 25px;
+            background: rgba(212, 165, 116, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .stat-box:hover {
+            background: rgba(212, 165, 116, 0.1);
+            border-color: rgba(212, 165, 116, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .stat-box .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--coffee-gold);
+        }
+
+        .stat-box .label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-visual .main-img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .about-visual:hover .main-img {
+            transform: scale(1.02);
+        }
+
+        .about-visual .floating-card {
+            position: absolute;
+            bottom: -20px;
+            left: -30px;
+            background: var(--coffee-dark);
+            border: 1px solid var(--coffee-light);
+            padding: 20px 30px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: floatCard 3s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-card .stars {
+            color: var(--coffee-gold);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .floating-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ========== COFFEE SPECIALTIES ========== */
+        .specialties {
+            background: var(--coffee-dark);
+        }
+
+        .coffee-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .coffee-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            background: var(--coffee-medium);
+        }
+
+        .coffee-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(26, 18, 8, 0.95) 100%);
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        .coffee-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(201, 162, 39, 0.1);
+        }
+
+        .coffee-card:hover::before {
+            background: linear-gradient(180deg, transparent 10%, rgba(26, 18, 8, 0.9) 100%);
+        }
+
+        .coffee-card img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .coffee-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .coffee-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            z-index: 2;
+        }
+
+        .coffee-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .coffee-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .coffee-card:hover .coffee-info p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .coffee-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--coffee-gold);
+            color: var(--coffee-dark);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* ========== EXPERIENCE TIMELINE ========== */
+        .experience {
+            background: linear-gradient(180deg, var(--coffee-medium) 0%, var(--coffee-dark) 100%);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--coffee-light), var(--coffee-gold), var(--coffee-light));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+            transform: translateX(50px);
+        }
+
+        .timeline-item:nth-child(even).visible {
+            transform: translateX(0);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            background: var(--coffee-dark);
+            border: 3px solid var(--coffee-gold);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+        }
+
+        .timeline-content {
+            background: rgba(212, 165, 116, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 380px;
+            margin: 0 30px;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            background: rgba(212, 165, 116, 0.08);
+            border-color: rgba(212, 165, 116, 0.25);
+            transform: scale(1.02);
+        }
+
+        .timeline-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--coffee-cream);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content .company {
+            color: var(--coffee-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content .location {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ========== SKILLS SECTION ========== */
+        .skills {
+            background: var(--coffee-dark);
+            padding: 80px 60px;
+        }
+
+        .skills-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(212, 165, 116, 0.03);
+            border: 1px solid rgba(212, 165, 116, 0.08);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(212, 165, 116, 0.06);
+            border-color: rgba(212, 165, 116, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--coffee-light), var(--coffee-gold));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .skill-item h4 {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .skill-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--coffee-medium);
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--coffee-cream);
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--coffee-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--coffee-cream);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--coffee-gold);
+            border-color: var(--coffee-gold);
+            color: var(--coffee-dark);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .coffee-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .about-content { grid-template-columns: 1fr; gap: 50px; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 25px; }
+            nav { padding: 15px 25px; }
+            nav.scrolled { padding: 12px 25px; }
+            .nav-links { display: none; }
+            .hero-counter { gap: 30px; }
+            .timeline::before { left: 20px; }
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+            .timeline-dot { left: 20px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .about-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Floating Coffee Beans Background -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">AKRAM</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#specialties">Specialties</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Available for Hire
+        </div>
+        <h1>AKRAM</h1>
+        <p class="hero-subtitle">Master Barista & Coffee Artisan</p>
+        <div class="hero-location">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Doha, Qatar
+        </div>
+        <div class="hero-counter">
+            <div class="counter-item">
+                <div class="counter-number" data-target="15">0</div>
+                <div class="counter-label">Years Experience</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number" data-target="4">0</div>
+                <div class="counter-label">Countries Worked</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number" data-target="50">0</div>
+                <div class="counter-label">K+ Coffees Served</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text reveal">
+                <h3>Crafting Perfection<br>in Every Cup</h3>
+                <p>With over 15 years of dedication to the art of coffee, I have honed my craft across some of the world's most prestigious coffee houses. From the bustling streets of London to the refined tastes of Japan, my journey has been defined by an unwavering pursuit of excellence.</p>
+                <p>Based in Doha, Qatar, I bring a global perspective to every roast, every pour, and every latte art creation. Coffee is not just my profession — it is my passion, my art, and my way of connecting with people.</p>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="num">15+</div>
+                        <div class="label">Years</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="num">4</div>
+                        <div class="label">Countries</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="num">50K+</div>
+                        <div class="label">Coffees</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="num">100%</div>
+                        <div class="label">Passion</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual reveal">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=700&fit=crop" alt="Coffee Art" class="main-img">
+                <div class="floating-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Exceptional craft and artistry"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee Specialties -->
+    <section class="specialties" id="specialties">
+        <div class="section-header reveal">
+            <h2>Signature Specialties</h2>
+            <div class="divider"></div>
+            <p>From bold espressos to delicate latte art, each cup is a masterpiece crafted with precision and passion.</p>
+        </div>
+        <div class="coffee-grid">
+            <div class="coffee-card reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/img.magnific.com/2aa3b801b8dff55534b8a846807dbf8e536e3887.jpg" alt="Espresso">
+                <div class="coffee-info">
+                    <span class="coffee-tag">Classic</span>
+                    <h3>Espresso</h3>
+                    <p>Rich, intense, and full-bodied. A perfect shot with golden crema — the foundation of all great coffee.</p>
+                </div>
+            </div>
+            <div class="coffee-card reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/static.vecteezy.com/3c97e1f727912164f442853552b1b83062da5fe9.JPG" alt="Latte Art">
+                <div class="coffee-info">
+                    <span class="coffee-tag">Artisan</span>
+                    <h3>Latte</h3>
+                    <p>Silky steamed milk meets bold espresso. Hand-poured latte art that turns every cup into a canvas.</p>
+                </div>
+            </div>
+            <div class="coffee-card reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/t4.ftcdn.net/e63c3372ad894f5173a5cc477519977c3d4dbb99.jpg" alt="Cappuccino">
+                <div class="coffee-info">
+                    <span class="coffee-tag">Italian</span>
+                    <h3>Cappuccino</h3>
+                    <p>Perfectly balanced with velvety foam. The ideal harmony of espresso, steamed milk, and microfoam.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="experience" id="experience">
+        <div class="section-header reveal">
+            <h2>Professional Journey</h2>
+            <div class="divider"></div>
+            <p>A decade and a half of excellence across international coffee cultures.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Shift Supervisor & Coffee Master</h4>
+                    <div class="company">Starbucks</div>
+                    <div class="location">📍 Al Ahaya, Qatar</div>
+                    <p>Led a team of baristas while mastering Starbucks' Coffee Master program. Specialized in bean origins, roasting profiles, and customer education.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Head Barista</h4>
+                    <div class="company">L'ETO Caffe</div>
+                    <div class="location">📍 London, UK</div>
+                    <p>Managed coffee operations at one of London's premier cafes. Developed signature drinks and trained junior baristas in latte art and extraction techniques.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Head Barista</h4>
+                    <div class="company">Amai Japanese</div>
+                    <div class="location">📍 Japan</div>
+                    <p>Immersed in Japanese coffee culture, mastering precision brewing methods like pour-over and siphon. Elevated the cafe's specialty coffee program.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Manager</h4>
+                    <div class="company">Crome London</div>
+                    <div class="location">📍 London, UK</div>
+                    <p>Oversaw full cafe operations including inventory, staff training, and quality control. Built a loyal customer base through exceptional service and coffee quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills" id="skills">
+        <div class="section-header reveal">
+            <h2>Core Expertise</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-item reveal">
+                <div class="skill-icon">☕</div>
+                <h4>Espresso Extraction</h4>
+                <p>Perfecting the golden shot</p>
+            </div>
+            <div class="skill-item reveal">
+                <div class="skill-icon">🎨</div>
+                <h4>Latte Art</h4>
+                <p>Free-pour rosettas & tulips</p>
+            </div>
+            <div class="skill-item reveal">
+                <div class="skill-icon">🌱</div>
+                <h4>Bean Sourcing</h4>
+                <p>Single-origin & blends</p>
+            </div>
+            <div class="skill-item reveal">
+                <div class="skill-icon">👥</div>
+                <h4>Team Leadership</h4>
+                <p>Training & mentoring</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <h3>Let's Brew Something Great</h3>
+        <p>Available for collaborations, consulting, and new opportunities in Doha and beyond.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="Email">✉️</a>
+            <a href="#" aria-label="Phone">📞</a>
+        </div>
+        <p class="copyright">© 2026 Akram. Crafted with passion in Doha, Qatar.</p>
+    </footer>
+
+    <script>
+        // ========== FLOATING COFFEE BEANS ==========
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 25; i++) {
+            const bean = document.createElement('div');
+            bean.className = 'bean';
+            bean.style.left = Math.random() * 100 + '%';
+            bean.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            bean.style.animationDelay = Math.random() * 10 + 's';
+            bean.style.width = (Math.random() * 8 + 8) + 'px';
+            bean.style.height = (Math.random() * 10 + 10) + 'px';
+            particlesContainer.appendChild(bean);
+        }
+
+        // ========== NAVBAR SCROLL EFFECT ==========
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ========== COUNTER ANIMATION ==========
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    el.textContent = target + (el.parentElement.querySelector('.counter-label').textContent.includes('K') ? '' : '');
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        const counters = document.querySelectorAll('.counter-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // ========== SCROLL REVEAL ==========
+        const revealElements = document.querySelectorAll('.reveal, .timeline-item');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ========== SMOOTH SCROLL FOR NAV LINKS ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ========== PARALLAX HERO ==========
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
